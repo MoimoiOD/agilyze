@@ -1,9 +1,10 @@
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    @if(authFacadeService.isRegister()) {
-        <app-register></app-register>
+    @if(this.authFacadeService.isRegister()) {
+        <app-register
+            (login)="this.renderLogin()"
+        ></app-register>
     }@else {
         <app-login 
-            (enter)="this.login($event)" 
             (register)="this.renderRegister()">
         </app-login>
     }

@@ -16,16 +16,12 @@ export class AuthComponent {
     public authFacadeService: AuthFacadeService,
   ) { }
 
-  async login(data: { email: string, password: string }) {
-    this.authFacadeService.login(data.email, data.password);
-  }
-
-  async register(data: { email: string, password: string }) {
-    
-  }
-
   async renderRegister() {
     this.authFacadeService.renderRegister()
+  }
+
+  async renderLogin() {
+    this.authFacadeService.renderLogin()
   }
 
 }

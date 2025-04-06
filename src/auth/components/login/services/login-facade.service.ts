@@ -1,12 +1,17 @@
-import { Injectable } from "@angular/core";
-import { from } from "rxjs";
+import { Injectable, signal } from "@angular/core";
+import { Router } from "@angular/router";
+import { firstValueFrom, from, Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
-export class ValidationService {
+export class LoginFacadeService {
 
-    constructor() { }
+    loginApi = 'http://localhost:3000/auth/login'
+
+    constructor(
+        private router: Router,
+    ) { }
 
     async validateEmail(email: string): Promise<boolean> {
         return email.includes('@');
@@ -16,8 +21,14 @@ export class ValidationService {
         return password.length >= 8;
     }
 
-    async validateCredentials(roterApi: string, email: string, password: string) {
-        return from(fetch(`${roterApi}`, 
+    async entryHome(email: string, password: string) {
+        const response = await firstValueFrom(this.validateCredentials(email, password))
+        if(response) this.router.navigate(['/home'])
+        console.log('Response:', response)
+    }
+
+    validateCredentials(email: string, password: string): Observable<any> {
+        return from(fetch(`${this.loginApi}`, 
             {
                 method: 'POST',
                 headers: {
@@ -33,10 +44,9 @@ export class ValidationService {
                 const errorResponse = await response.json();
                 throw new Error(errorResponse.message || 'Erro desconhecido');
             }
-            console.log('Response:', response);
             return response.json();
         }).catch(error => {
-            console.error('Error:', error);
+            console.error(error);
             throw error;
         }))
     }
