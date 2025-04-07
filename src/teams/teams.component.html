@@ -4,8 +4,8 @@
         <main class="pt-2 pb-40">
           <div class="relative grid gap-[17px] sm:grid-cols-2 xl:grid-cols-[repeat(15,minmax(0,1fr))]">
             <app-system-selector class="relative xl:col-span-5"></app-system-selector>
-            <app-environment-information class="relative sm:col-span-2 md:col-span-1 xl:col-span-5"></app-environment-information>
-            <app-chat (openDialogue)="open()" class="relative xl:col-span-5"></app-chat>
+            <app-environment-information (openInformation)="openInfo()" class="relative sm:col-span-2 md:col-span-1 xl:col-span-5"></app-environment-information>
+            <app-chat (openDialogue)="openDial()" class="relative xl:col-span-5"></app-chat>
             <app-methodologies class="relative sm:col-span-2 md:col-span-1 xl:col-span-5"></app-methodologies>
             <app-members class="relative sm:col-span-2 xl:col-span-10"></app-members>
             <app-history class="relative sm:col-span-2 xl:col-span-9"></app-history>
@@ -16,4 +16,5 @@
     </div>
 </div>
 
-<app-dialogue [openDialogue]="openDialogue" (closeDialogue)="close()"></app-dialogue>  
+<app-information [openInformation]="openInformation" (closeInformation)="closeInfo()"></app-information>
+<app-dialogue [openDialogue]="openDialogue" (closeDialogue)="closeDial()"></app-dialogue> 

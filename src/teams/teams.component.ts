@@ -7,27 +7,36 @@ import { MembersComponent } from './components/members/members.component';
 import { HistoryComponent } from './components/history/history.component';
 import { VisibilityComponent } from './components/visibility/visibility.component';
 import { DialogueComponent } from './components/chat/components/dialogue/dialogue.component';
+import { InformationComponent } from "./components/environment-information/components/information/information.component";
 
 @Component({
   selector: 'app-teams',
   imports: [SystemSelectorComponent, EnvironmentInformationComponent, ChatComponent, MethodologiesComponent,
-    MembersComponent, HistoryComponent, VisibilityComponent, DialogueComponent
-  ],
+    MembersComponent, HistoryComponent, VisibilityComponent, DialogueComponent, InformationComponent],
   templateUrl: './teams.component.html',
   styleUrl: './teams.component.scss'
 })
 export class TeamsComponent {
 
   openDialogue: boolean = false;
+  openInformation: boolean = false;
 
   constructor() { }
 
-  open() {
+  openDial() {
     this.openDialogue = true;
   }
 
-  close() {
+  closeDial() {
     this.openDialogue = false;
+  }
+
+  openInfo() {
+    this.openInformation = true;
+  }
+  
+  closeInfo() {
+    this.openInformation = false;
   }
 
 }
